@@ -1,5 +1,6 @@
 {
   "name": "client",
+  "license": "MIT",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -45,7 +46,16 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "type-check": "yarn tsc --noEmit",
+    "eslint": "eslint ./src --ext .jsx,.ts,.tsx,.js --cache",
+    "prettier": "prettier \"src/**/*\"",
+    "eslint:fix": "yarn eslint --fix",
+    "prettier:fix": "yarn prettier --check",
+    "lint:css": "stylelint './src/**/*.tsx' --cache --cache-location '.stylelintcache'",
+    "lint": "yarn eslint && yarn prettier --list-different && yarn lint:css",
+    "lint:fix": "yarn eslint:fix && yarn prettier:fix && yarn lint:css",
+    "check-rule": "yarn type-check && yarn lint"
   },
   "eslintConfig": {
     "extends": [
@@ -66,7 +76,15 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "3.5.1"
+    "@capacitor/cli": "3.5.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "stylelint": "^14.8.2",
+    "stylelint-config-recommended": "^7.0.0"
   },
   "description": "An Ionic project"
 }
