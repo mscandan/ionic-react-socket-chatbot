@@ -1,18 +1,17 @@
 import React from 'react';
-import './ExploreContainer.css';
+
+const styles = {
+  container: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+  },
+};
 
 const ExploreContainer: React.FC = () => {
-  return (
-    <div className="container">
-      <strong>Ready to create an app?</strong>
-      <p>
-        Start with Ionic{' '}
-        <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">
-          UI Components
-        </a>
-      </p>
-    </div>
-  );
+  return <div style={styles.container}>hello</div>;
 };
 
 export default ExploreContainer;
