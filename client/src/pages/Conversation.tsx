@@ -1,8 +1,7 @@
 import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import { JoinRoom } from 'components';
 
-const Home: React.FC = () => {
+const Conversation: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -11,10 +10,10 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <JoinRoom />
+        <div>conversation page</div>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Home;
+export default Conversation;
