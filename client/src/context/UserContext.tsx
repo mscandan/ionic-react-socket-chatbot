@@ -14,6 +14,7 @@ const UserContext = React.createContext<UserType>(defaultUser);
 
 const UserProvider: React.FC = ({ children }) => {
   const [username, setUsername] = React.useState('');
+  const [roomId, setRoomId] = React.useState('');
   return <UserContext.Provider value={{ username, setUsername }}>{children}</UserContext.Provider>;
 };
 

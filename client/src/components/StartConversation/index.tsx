@@ -31,7 +31,7 @@ const styles = {
   },
 };
 
-export const JoinRoom: React.FC = () => {
+export const StartConversation: React.FC = () => {
   const { username, setUsername } = useUser();
   const history = useHistory();
   const [showAlert, setShowAlert] = React.useState(false);

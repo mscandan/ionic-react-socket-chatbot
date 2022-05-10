@@ -1,3 +1,3 @@
-import { JoinRoom } from './JoinRoom';
+import { StartConversation } from './StartConversation';
 
-export { JoinRoom };
+export { StartConversation };
