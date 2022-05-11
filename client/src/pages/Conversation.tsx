@@ -40,9 +40,9 @@ const Conversation: React.FC = () => {
   };
 
   return (
-    <div style={{ height: '100%' }}>
+    <div style={{ height: 'calc(100% - 56px)', margin: '20px' }}>
       <Chat messages={messages} />
-      <form onSubmit={handleMessageSend} style={{ margin: '0 20px' }}>
+      <form onSubmit={handleMessageSend}>
         <IonItem>
           <IonTextarea
             placeholder="Write your message here"
