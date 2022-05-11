@@ -1,5 +1,6 @@
 import io, { Socket } from 'socket.io-client';
 import { SOCKET_URL } from 'constants/';
+import { MessageType } from 'types';
 
 class Connection {
   public socket: Socket;
@@ -8,12 +9,12 @@ class Connection {
     this.socket = io(SOCKET_URL);
   }
 
-  public async sendMessage(data: { message: string; sender: string; time: number }) {
+  public async sendMessage(data: MessageType) {
     await this.socket.emit('send-message', data);
   }
 
-  public async listenForMessage(callback: (newMsg: string) => void) {
-    await this.socket.on('receive-message', (message: string) => {
+  public async listenForMessage(callback: (newMsg: MessageType) => void) {
+    await this.socket.on('receive-message', (message: MessageType) => {
       callback(message);
     });
   }

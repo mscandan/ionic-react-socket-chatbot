@@ -1,15 +1,18 @@
-import { IonButton } from '@ionic/react';
+import { IonButton, IonItem, IonTextarea } from '@ionic/react';
+import { Chat } from 'components';
 import { useUser } from 'context/UserContext';
 import React from 'react';
 import { useHistory } from 'react-router';
 import { ClientConnection } from 'services/connection';
+import { MessageType } from 'types';
 
 const Conversation: React.FC = () => {
   const { username } = useUser();
   const history = useHistory();
-  const [messages, setMessages] = React.useState<Array<string>>([]);
+  const [messages, setMessages] = React.useState<Array<MessageType>>([]);
+  const [currentMessage, setCurrentMessage] = React.useState('');
 
-  const handleUpdateMessage = React.useCallback((newMsg: string) => {
+  const handleUpdateMessage = React.useCallback((newMsg: MessageType) => {
     setMessages(msgs => [...msgs, newMsg]);
   }, []);
 
@@ -26,20 +29,32 @@ const Conversation: React.FC = () => {
     };
   }, [ClientConnection]); // eslint-disable-line
 
-  const handleMessageSend = (e: React.MouseEvent) => {
+  const handleMessageSend = (e: React.FormEvent) => {
     e.preventDefault();
-    ClientConnection.sendMessage({ message: 'asdasd', sender: username, time: 1 });
+    if (currentMessage.length > 0 && currentMessage.trim().length > 0) {
+      const msgData: MessageType = { message: currentMessage, sender: username, date: Date.now() };
+      handleUpdateMessage(msgData);
+      ClientConnection.sendMessage(msgData);
+      setCurrentMessage('');
+    }
   };
 
   return (
-    <div>
-      {username}
-      <div>
-        {messages.map((msg, idx) => (
-          <span key={`msg-${idx}`}>{msg}</span>
-        ))}
-      </div>
-      <IonButton onClick={handleMessageSend}>Sent message</IonButton>
+    <div style={{ height: '100%' }}>
+      <Chat messages={messages} />
+      <form onSubmit={handleMessageSend} style={{ margin: '0 20px' }}>
+        <IonItem>
+          <IonTextarea
+            placeholder="Write your message here"
+            rows={2}
+            value={currentMessage}
+            onIonChange={e => setCurrentMessage(e.detail.value as string)}
+          />
+        </IonItem>
+        <IonButton type="submit" onClick={handleMessageSend} expand="full">
+          Sent message
+        </IonButton>
+      </form>
     </div>
   );
 };
