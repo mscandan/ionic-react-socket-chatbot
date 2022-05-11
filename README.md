@@ -1,5 +1,11 @@
 # Getting started
 
+- Prerequirements
+
+  - [NodeJS](https://nodejs.org/en/)
+  - [yarn](https://yarnpkg.com/)
+  - [ionic/cli](https://ionicframework.com/docs/)
+
 - Clone this repository
 
   ```sh
