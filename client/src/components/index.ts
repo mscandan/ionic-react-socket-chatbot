@@ -1,4 +1,4 @@
-import { StartConversation } from './StartConversation';
 import { Chat } from './Chat';
+import { Message } from './Message';
 
-export { StartConversation, Chat };
+export { Chat, Message };

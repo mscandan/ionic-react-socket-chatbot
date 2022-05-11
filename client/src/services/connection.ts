@@ -3,7 +3,7 @@ import { SOCKET_URL } from 'constants/';
 import { MessageType } from 'types';
 
 class Connection {
-  public socket: Socket;
+  private socket: Socket;
 
   constructor() {
     this.socket = io(SOCKET_URL);

@@ -6,6 +6,13 @@ import { useHistory } from 'react-router';
 import { ClientConnection } from 'services/connection';
 import { MessageType } from 'types';
 
+const styles = {
+  container: {
+    height: 'calc(100% - 56px)',
+    margin: '20px',
+  },
+};
+
 const Conversation: React.FC = () => {
   const { username } = useUser();
   const history = useHistory();
@@ -16,12 +23,14 @@ const Conversation: React.FC = () => {
     setMessages(msgs => [...msgs, newMsg]);
   }, []);
 
+  // send user to begin conversation screen on refresh
   React.useEffect(() => {
     if (username.length === 0) {
       history.push('/');
     }
   }, [username, history]);
 
+  // listen for messages from the bot
   React.useEffect(() => {
     ClientConnection.listenForMessage(handleUpdateMessage);
     return () => {
@@ -40,7 +49,7 @@ const Conversation: React.FC = () => {
   };
 
   return (
-    <div style={{ height: 'calc(100% - 56px)', margin: '20px' }}>
+    <div style={styles.container}>
       <Chat messages={messages} />
       <form onSubmit={handleMessageSend}>
         <IonItem>

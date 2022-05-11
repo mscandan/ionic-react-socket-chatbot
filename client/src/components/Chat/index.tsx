@@ -1,7 +1,6 @@
-import { useUser } from 'context/UserContext';
+import { Message } from 'components/Message';
 import React from 'react';
 import { MessageType } from 'types';
-import { formatDate } from 'utils/formatDate';
 
 interface ChatProps {
   messages: Array<MessageType>;
@@ -9,8 +8,8 @@ interface ChatProps {
 
 const styles = {
   container: {
-    height: '75%',
-    maxHeight: '75%',
+    height: '85%',
+    maxHeight: '85%',
     overflow: 'auto',
     backgroundColor: 'gray',
     display: 'flex',
@@ -18,29 +17,9 @@ const styles = {
     justifyContent: 'flex-start',
     flexDirection: 'column' as const,
   },
-  messageBox: {
-    borderRadius: '4px',
-    padding: '2px 20px',
-    margin: '4px',
-    maxWidth: '80%',
-  },
-  senderUser: {
-    alignSelf: 'flex-end',
-    backgroundColor: '#65c466',
-  },
-  senderBot: {
-    alignSelf: 'flex-start',
-    backgroundColor: '#3b82f7',
-  },
-};
-
-const getStyles = (isUser: boolean) => {
-  if (isUser) return { ...styles.messageBox, ...styles.senderUser };
-  return { ...styles.messageBox, ...styles.senderBot };
 };
 
 export const Chat: React.FC<ChatProps> = ({ messages }) => {
-  const { username } = useUser();
   const endOfTheChatRef = React.createRef<HTMLDivElement>();
 
   React.useEffect(() => {
@@ -51,19 +30,9 @@ export const Chat: React.FC<ChatProps> = ({ messages }) => {
 
   return (
     <div style={styles.container}>
-      {messages.map((message, idx) => {
-        return (
-          <div style={getStyles(username === message.sender)} key={`msg-${idx}`}>
-            <p>
-              <strong>{message.sender}</strong>
-            </p>
-            <p>{message.message}</p>
-            <p>
-              <i>{formatDate(message.date)}</i>
-            </p>
-          </div>
-        );
-      })}
+      {messages.map((message, idx) => (
+        <Message message={message} key={`msg-${idx}`} />
+      ))}
       <div ref={endOfTheChatRef} />
     </div>
   );

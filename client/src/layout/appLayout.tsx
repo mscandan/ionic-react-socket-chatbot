@@ -6,7 +6,7 @@ export const AppLayout: React.FC = ({ children }) => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Chat App</IonTitle>
+          <IonTitle>Customer Service App</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>{children}</IonContent>
