@@ -26,11 +26,11 @@ const styles = {
   },
   senderUser: {
     alignSelf: 'flex-end',
-    backgroundColor: 'red',
+    backgroundColor: '#65c466',
   },
   senderBot: {
     alignSelf: 'flex-start',
-    backgroundColor: 'blue',
+    backgroundColor: '#3b82f7',
   },
 };
 
