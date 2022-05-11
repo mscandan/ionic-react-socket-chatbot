@@ -1,8 +1,8 @@
+import React from 'react';
+import { useHistory } from 'react-router';
 import { IonButton, IonItem, IonTextarea } from '@ionic/react';
 import { Chat } from 'components';
 import { useUser } from 'context/UserContext';
-import React from 'react';
-import { useHistory } from 'react-router';
 import { ClientConnection } from 'services/connection';
 import { MessageType } from 'types';
 

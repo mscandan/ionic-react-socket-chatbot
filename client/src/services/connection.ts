@@ -9,12 +9,14 @@ class Connection {
     this.socket = io(SOCKET_URL);
   }
 
-  public async sendMessage(data: MessageType) {
-    await this.socket.emit('send-message', data);
+  // send message to bot
+  public sendMessage(data: MessageType) {
+    this.socket.emit('send-message', data);
   }
 
-  public async listenForMessage(callback: (newMsg: MessageType) => void) {
-    await this.socket.on('receive-message', (message: MessageType) => {
+  // listen for bot's reply
+  public listenForMessage(callback: (newMsg: MessageType) => void) {
+    this.socket.on('receive-message', (message: MessageType) => {
       callback(message);
     });
   }

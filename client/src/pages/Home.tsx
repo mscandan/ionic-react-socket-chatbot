@@ -10,8 +10,8 @@ import {
   IonButton,
   IonAlert,
 } from '@ionic/react';
-import { useUser } from 'context/UserContext';
 import { useHistory } from 'react-router';
+import { useUser } from 'context/UserContext';
 
 const styles = {
   container: {
