@@ -21,7 +21,7 @@ export class Reply {
   // listens for message and sends random created reply
   public listenForMessage() {
     this.socket.on('send-message', (data: { message: string; sender: string; date: number }) => {
-      console.log('user sent a message ', data);
+      console.log('user sent a message ', data); // eslint-disable-line no-console
       const replyData: MessageType = {
         message: this.chooseRandomMessage(),
         sender: 'bot',
