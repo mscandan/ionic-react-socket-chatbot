@@ -2,7 +2,7 @@
 import express from 'express';
 import cors from 'cors';
 import { Server } from 'socket.io';
-import { ReplyService } from './services/reply';
+import { Reply } from './services/reply';
 
 const app = express();
 app.use(express.json());
@@ -25,10 +25,9 @@ const io = new Server(server, {
 io.on('connection', socket => {
   console.log('user connected ', socket.id);
 
-  socket.on('send-message', (data: { message: string; sender: string; date: number }) => {
-    console.log('user sent a message ', data);
-    socket.emit('receive-message', { message: ReplyService.chooseRandomMessage(), sender: 'bot', date: Date.now() });
-  });
+  const ReplyService = new Reply(socket);
+
+  ReplyService.listenForMessage();
 
   socket.on('disconnect', () => {
     console.log('user disconnected', socket.id);
